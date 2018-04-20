@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+<link rel="stylesheet" th:href="@{/css/record.css}"/>
+<title>蛋玩科技</title>
+</head>
+
+<body>
+	<div class="wrap">
+		<ul class="recordUl">
+			<li class="title">
+				<p class="liItem liItem1">
+					<span>战</span>绩
+				</p>
+				<p class="liItem">今日</p>
+				<p class="liItem">累计</p>
+			</li>
+			<li class="gameTime">
+				<p class="liItem ItemTitle TimeTitle">游戏时长</p>
+				<div class="liItem">
+					<div class="gameToday">
+						<p class="TodygameNum" th:text="${time}">0</p>
+						<p class="TodygameNum1">HOURS</p>
+						<div class="circle gameTodyCircle">
+							<span class="hand1"></span> <span class="hand2"></span>
+						</div>
+					</div>
+				</div>
+				<div class="liItem">
+					<div class="totalBig totalTimeCircle">
+						<div class="totalTimeSmall">
+							<p class="totalgameNum" th:text="${lengthOfTime}">0</p>
+							<p class="totalgameNum1">HOURS</p>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="cardTimes">
+				<p class="liItem ItemTitle cardTitle">刷卡次数</p>
+				<div class="liItem">
+					<div class="cardtodayLa">
+						<div class="cardtodyLaBg">
+							<div class="cardtodayMd">
+								<div class="cardtodayMdBg">
+									<div class="cardtodySq">
+										<p class="cardTodayNum1">CARD</p>
+										<p class="cardTodayNum" th:text="${frequency}">0</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="liItem">
+					<div class="cardTotal">
+						<p class="totalcardNum" th:text="${lengthfrequency}">0</p>
+						<p class="totalcardNum1">TIMES</p>
+					</div>
+				</div>
+			</li>
+			<li class="gameMeter">
+				<p class="liItem ItemTitle meterTitle">行驶里程</p>
+				<div class="liItem">
+					<div class="metertoday">
+						<div class="metertodayBg metertodayBg1"></div>
+						<div class="metertodayBg metertodayBg2"></div>
+						<p class="metertodayNum" th:text="${meters}">0</p>
+					</div>
+				</div>
+				<div class="liItem">
+					<div class="totalBig totalTimeCircle">
+						<div class="totalTimeSmall">
+							<p class="totalgameNum" th:text="${lengthMeters}">0</p>
+							<p class="totalgameNum1">METERS</p>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+
+</html>
