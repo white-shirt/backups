@@ -76,7 +76,7 @@ contentWrap.addEventListener(endEvt, function () {
         sidebarContent[i].style.display = "none";
     }
     sidebarContent[contentIndex].style.display = "block";
-    contentLogo.style.backgroundPositionX = -104 * contentIndex + "px";
+    contentLogo.style.backgroundPositionX = -100 * contentIndex + "px";
     disX = 0;
 },false);
 function contentMove(direction, ele) {
