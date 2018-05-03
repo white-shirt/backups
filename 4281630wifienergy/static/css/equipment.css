@@ -1,0 +1,93 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+html {
+	width: 100%;
+	font-size: calc(100vw/ 6.4);
+	/*1rem=100px*/
+	font-size: -webkit-calc(100vw/ 6.4);
+	font-size: -moz-calc(100vw/ 6.4);
+	-webkit-text-size-adjust: 100%;
+	/*页面点击链接时会出现高亮框，此代码用来解决*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	/*在谷歌里面，小于12号字都会直接显示为12号字，此代码解除此问题*/
+	-webkit-text-size-adjust: none;
+}
+
+body {
+	font-family: 'MicroSoft Yahei';
+	background-size: 100% 100%;
+}
+
+ul {
+	list-style: none;
+}
+
+.wrap {
+	padding: 0.2rem;
+}
+
+.eqNum {
+	width: 100%;
+	height: 1rem;
+	border-bottom: 1px solid #dbdbdb;
+	font-size: 0.25rem;
+	padding-top: 0.5rem;
+	text-align: center;
+}
+
+.ul .hide {
+	display: none;
+}
+
+.show {
+	width: 100%;
+	height: 1rem;
+	border-bottom: 1px solid #dbdbdb;
+	font-size: 0.28rem;
+}
+
+.liImg {
+	display: inline-block;
+	width: 0.8rem;
+	height: 0.8rem;
+	float: left;
+	margin-top: 0.1rem;
+	background-size: 100% 100%;
+}
+
+.title {
+	display: inline-block;
+	line-height: 1rem;
+	margin-left: 0.2rem;
+}
+
+.online {
+	display: inline-block;
+	width: 0.2rem;
+	height: 0.2rem;
+	border-radius: 0.1rem;
+	float: right;
+	margin: 0.4rem 0.2rem 0 0;
+}
+
+
+
+.show .off {
+	background-color: #999;
+}
+
+.show .on {
+	background-color: #48d7dc;
+}
+
+.list .hide {
+	display: none;
+	width: 100%;
+	height: 3rem;
+	background-color: deepskyblue;
+}

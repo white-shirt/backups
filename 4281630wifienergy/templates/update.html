@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<script type="text/javascript" th:src="@{/js/jquery-1.10.1.min.js}"></script>
+<title>系统更新通知</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	background: url('../img/updateBg.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+ul {
+	list-style: none;
+}
+
+.mask {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 10;
+}
+
+.updatePic {
+	position: absolute;
+	width: 100%;
+	height: 55%;
+	bottom: 0;
+}
+
+.updatePic ul {
+	width: 100%;
+	height: 100%;
+}
+
+.updatePicList {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.updateWait {
+	display: block;
+	background: url('../img/updateD.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+.updateIng {
+	display: none;
+	background: url('../img/updateGif.gif') no-repeat;
+	background-size: 100% 100%;
+}
+
+.updateContent {
+	position: absolute;
+	width: 100%;
+	height: 45%;
+	text-align: center;
+	font-size: 17px;
+}
+
+.updataBtn {
+	width: 80%;
+	height: 40px;
+	border-radius: 15px;
+	margin: 15px auto 0;
+	background: #fff;
+	line-height: 40px;
+	color: rgb(36, 36, 36);
+	box-shadow: 1px 3px rgb(207, 207, 207);
+}
+
+.noticeContent {
+	display: none;
+	position: absolute;
+	width: 70%;
+	height: 240px;
+	top: 50%;
+	margin-top: -120px;
+	left: 15%;
+	font-size: 13px;
+	text-align: center;
+	border-radius: 10px;
+	box-sizing: border-box;
+	padding: 20px 20px 0;
+	word-break: break-word;
+	background: #fff;
+	z-index: 11;
+}
+
+.noticeContent p {
+	margin: 5px 0;
+}
+
+.noticeBtn {
+	position: absolute;
+	width: 80%;
+	height: 30px;
+	bottom: 20px;
+	left: 10%;
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+	border-radius: 5px;
+	background: rgb(255, 200, 0);
+}
+</style>
+</head>
+<body>
+	<input type="hidden" id = "devid" th:value="${devid}"/>
+	<div class="mask"></div>
+	<div class="updateContent">
+		<p style="margin: 30px auto 10px;">开机前请确保"蛋仔"</p>
+		<p>
+			<strong>已开机</strong>
+		</p>
+		<p>
+			<strong>有充足的电量</strong>
+		</p>
+		<p>
+			<strong>网络连接正常</strong>
+		</p>
+		<p style="margin-top: 20px; font-size: 13px;">点击 "下载/更新" 按钮进行系统更新</p>
+		<div class="updataBtn" onclick="updata()">下载/更新</div>
+	</div>
+	<div class="updatePic">
+		<ul>
+			<li class="updatePicList updateWait"></li>
+			<li class="updatePicList updateIng"></li>
+		</ul>
+	</div>
+	<div class="noticeContent">
+		<p style="font-weight: bolder;">"蛋仔"固件更新须知</p>
+		<p>1.点击"下载/更新"按钮后听"蛋仔"语音提示</p>
+		<p>2.如更新失败待机器自动重启后，猛戳"下载/更新"按钮</p>
+		<p>3.实在不行请联系客服:027-62436187</p>
+		<div class="noticeBtn">好了，我知道了</div>
+	</div>
+
+	<script>
+		var deviceId = document.getElementById("devid").value;
+		var BtnState = true;
+		var updataBtn = document.querySelector(".updataBtn");
+		var updatePicList = document.querySelectorAll(".updatePicList");
+		var noticeContent = document.querySelector(".noticeContent");
+		var noticeBtn = document.querySelector(".noticeBtn");
+		var mask = document.querySelector(".mask");
+		function initBtn() {
+			if (BtnState) {
+				updataBtn.style.background = "#fff";
+				updataBtn.style.boxShadow = "1px 3px rgb(207, 207, 207)";
+				updataBtn.innerHTML = "下载/更新";
+				updatePicList[0].style.display = "block";
+				updatePicList[1].style.display = "none";
+			}
+		};
+		updataBtn.addEventListener("touchstart", function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			if (BtnState) {
+				this.style.boxShadow = "0 0 #fff";
+				this.style.transform = "translateY(3px)";
+			}
+		}, false);
+		updataBtn.addEventListener("touchend", function() {
+			if (BtnState) {
+				this.style.boxShadow = "1px 3px rgb(207, 207, 207)";
+				this.style.transform = "translateY(-3px)";
+				this.innerHTML = "下载中...";
+				this.style.background = "rgb(180, 180, 180)";
+				updatePicList[0].style.display = "none";
+				updatePicList[1].style.display = "block";
+				mask.style.display = "block";
+				noticeContent.style.display = "block";
+				BtnState = false;
+				$.ajax({
+					url : "upgrade/"+deviceId,
+					type : "GET",
+					success : function(result) {
+					},
+					error : function() {
+					}
+				});
+				setTimeout(function() {
+					BtnState = true;
+					initBtn();
+				}, 30000);
+			}
+		}, false);
+		noticeBtn.onclick = function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			mask.style.display = "none";
+			noticeContent.style.display = "none";
+		}
+	</script>
+</body>
+</html>

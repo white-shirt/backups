@@ -375,11 +375,13 @@ $(document).ready(function () {
     var r;
     canvas1.width = clientW;
     canvas1.height = clientH;
+    PixelRatio(canvas1, ctx1);
     ctx1.translate(colorCenX, colorCenY)
     var canvas2 = document.querySelector('#canvas2');
     var ctx2 = canvas2.getContext('2d');
     canvas2.width = clientW;
     canvas2.height = clientH;
+    PixelRatio(canvas2, ctx2);
     ctx2.translate(colorCenX, colorCenY)
     function drawbg() {
         r = colorW * 0.5 + 30;
@@ -607,6 +609,8 @@ $(document).ready(function () {
     powerCanvas2.width = clientW;
     powerCanvas2.height = clientH;
     var drawR;
+    PixelRatio(powerCanvas1, powerctx1);
+    PixelRatio(powerCanvas2, powerctx2);
     powerctx1.translate(spinBtnCenX,spinBtnCenY);
     powerctx2.translate(spinBtnCenX,spinBtnCenY);
     function powerDrawBg() {
@@ -635,5 +639,14 @@ $(document).ready(function () {
     /*
 	 * page3 js 结束
 	 */
-
+    function PixelRatio(ele, electx) {
+        var width = ele.width, height = ele.height;
+        if (window.devicePixelRatio) {
+            ele.style.width = width + "px";
+            ele.style.height = height + "px";
+            ele.height = height * window.devicePixelRatio;
+            ele.width = width * window.devicePixelRatio;
+            electx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        }
+    };
 });
