@@ -160,7 +160,7 @@
         });
 	})
 	
-	// 第一页歌曲频谱
+	// 第一页歌曲频谱频谱
 	var voiceBox1Timer;
 	var voiceBox1 = document.querySelector('.voiceBox1');
 	var boxW = voiceBox1.offsetWidth;

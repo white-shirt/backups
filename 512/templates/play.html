@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<title>内容播放</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/play.css?version=20180511}" />
+	<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+</head>
+
+<body>
+	<input type="hidden" id="deviceId" th:value='${WeChatProperty.deviceId}'/>		
+	<canvas id="bg"></canvas>
+    <div class="wrap">
+	<div class="mask"></div>
+	<h1 class="musicName"></h1>
+	<ul class="controlList">
+		<li class="last"></li>
+		<li class="start"></li>
+		<li class="next"></li>
+	</ul>
+	<div class="voiceBox voiceBox1"></div>	
+	<div class="operation">
+		<div class="cate"></div>
+		<ul class="opBox">
+			<li class="list listMusic"></li>
+			<li class="mode modeMusic"></li>
+		</ul>
+		<div class="btnBox">
+			<div class="slideBtn"></div>
+		</div>
+		<img th:src="@{/img/music.png}" class="opMusicImg" />
+		<img th:src="@{/img/story.png}" class="opStoryImg" />
+	</div>
+	<div class="musicList">
+		<div class="volumeIcon MusicvolumeIcon">
+			<img th:src="@{/img/volume.png}" />
+			<p class="volumeBar1">
+				<span class="leftVolBar1"></span>
+				<span class="leftBtn1"></span>
+			</p>
+		</div>
+		<p>歌曲列表</p>
+		<ul>
+		</ul>
+	</div>
+    </div>
+	<script type="text/javascript" th:src="@{/js/play.js?version=201805121750}"></script>
+	<script type="text/javascript">
+			function initBg() {
+			var playWidth = $('body').width();
+			var playHeight = $('body').height();
+			var bg = document.getElementById('bg');
+			var ctxbg = bg.getContext('2d');
+			bg.width = playWidth;
+			bg.height = playHeight;
+			if (window.devicePixelRatio) {
+				bg.style.width = playWidth + 'px';
+				bg.style.height = playHeight + 'px';
+				bg.width = playWidth * window.devicePixelRatio;
+				bg.height = playHeight * window.devicePixelRatio;
+				ctxbg.scale(window.devicePixelRatio, window.devicePixelRatio);
+			}
+			var bgPic = new Image();
+			bgPic.src = './img/bg1.png';
+			switchMode.cate.click(function () {
+				if (playMode === 'music') {
+					bgPic.src = './img/bg1.png';
+				} else {
+					bgPic.src = './img/bg2.png';
+				}
+			})
+			bgPic.onload = function () {
+				ctxbg.drawImage(bgPic, 0, 0, playWidth, playHeight);
+			}
+		};
+		initBg();
+	</script>
+</body>
+
+</html>

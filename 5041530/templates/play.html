@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>内容播放</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/swiper.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/play.css}"/>
+	<script type="text/javascript" th:src="@{/js/jquery-1.10.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/swiper.jquery.min.js}"></script>
+	<script th:inline="javascript" th:src="@{/js/play.js?version=20180424}"></script>
+</head>
+<body>
+<input type="hidden" id="deviceId" th:value='${WeChatProperty.deviceId}'/>
+	<input type="hidden" id="volume" th:value='${WeChatProperty.volume}'/>
+	<div id="wrapper" class="swiper-container">
+		<div class="swiper-wrapper">
+			<!--第一屏-->
+			<div class="swiper-slide page1">
+				<h1 class="musicName"></h1>
+				<ul class="controlList">
+					<li class="lastMusic1"></li>
+					<li class="startStop1"></li>
+					<li class="nextMusic1"></li>
+				</ul>
+				<!--音乐播放进度条    已隐藏-->
+				<div class="box1">
+					<span class="curtime1">00:00</span>
+					<p class="bar1">
+						<span class="leftbar1"></span>
+						<span class="btn1"></span>
+					</p>
+					<span class="endtime1">00:00</span>
+				</div>
+				<!-- 替代音乐进度条的频谱 -->
+				<div class="voiceBox voiceBox1"></div>
+				<div class="operation">
+					<div class="cate"><img th:src="@{/img/cate1.png}"/></div>
+				    <ul class="opBox">
+				    	<li class="list listMusic"></li>
+				    	<li class="mode modeMusic"></li>
+				    </ul>
+				    <div class="btnBox">
+						<div class="slideBtn"></div>
+					</div>
+				    <img th:src="@{/img/music.png}" class="opMusicImg"/>
+				</div>
+				<div class="musicList">
+					<div class="volumeIcon MusicvolumeIcon">
+						<img th:src="@{/img/volume.png}"/>
+						<p class="volumeBar1">
+							<span class="leftVolBar1"></span>
+							<span class="leftBtn1"></span>
+						</p>
+					</div>
+					<p>歌曲列表</p>
+					<ul>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<!--第二屏-->
+			<div class="swiper-slide page2">
+				<h1 class="storyName">谁把愿望藏在云朵里</h1>
+				<ul class="controlList">
+					<li class="lastMusic2"></li>
+					<li class="startStop2"></li>
+					<li class="nextMusic2"></li>
+				</ul>
+				<!--音乐播放进度条   已隐藏-->
+				<div class="box2">
+					<span class="curtime2">00:00</span>
+					<p class="bar2">
+						<span class="leftbar2"></span>
+						<span class="btn2"></span>
+					</p>
+					<span class="endtime2">00:00</span>
+				</div>
+				<div class="voiceBox voiceBox2">
+					<ul></ul>
+				</div>
+				<div class="operation">
+					<div class="cate"><img th:src="@{/img/cate2.png}"/></div>
+				    <ul class="opBox">
+				    	<li class="list listStory"></li>
+				    	<li class="mode modeStory"></li>
+				    </ul>
+				    <img th:src="@{/img/story.png}"  class="opStoryImg"/>
+				</div>
+				<div class="storyList">
+					<div class="volumeIcon StoryvolumeIcon">
+						<img th:src="@{/img/volume.png}"/>
+						<p class="volumeBar2">
+							<span class="leftVolBar2"></span>
+							<span class="leftBtn2"></span>
+						</p>
+					</div>
+					<p>故事列表</p>
+					<ul>
+					</ul>
+				</div>
+			</div>
+		
+		</div>
+		<!--分页器-->
+		<div class="swiper-pagination"></div>
+		<audio id="mAudio"></audio>
+	</div>
+</body>
+</html>
+	

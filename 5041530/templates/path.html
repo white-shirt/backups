@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <script th:src="@{js/jquery-3.2.1.min.js?version=20170417}"></script>
+  <link rel="stylesheet" th:href="@{css/path.css?version=201804241130}" />
+  <title>画线编程</title>
+</head>
+<body>
+  <input type="hidden" id="DeviceId" th:value="${WeChatProperty.deviceId}"/>
+  <canvas id="canvasBg"></canvas>
+  <canvas id="Connections"></canvas>
+  <canvas id="drawLine"></canvas>
+  <canvas id="sendAnimation"></canvas>
+  <div class="BtnWrap">
+    <ul>
+      <li class="Btnlist"><button id="add" class="btngroup" data-attr = "add"></button></li>
+      <li class="Btnlist"><button id="sub" class="btngroup" data-attr = "sub"></button></li>
+      <li class="Btnlist"><button id="repeal" class="btngroup" data-attr = "repeal"></button></li>
+      <li class="Btnlist"><button id="btn" class="btngroup" data-attr = "start"></button></li>
+    </ul>
+  </div>
+  <script type="text/javascript" th:src="@{js/path.js?version=201805041744}"></script>
+  <script type="text/javascript" th:src="@{js/energy.js?version=20180507}"></script>
+</body>
+</html>
