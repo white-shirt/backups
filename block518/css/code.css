@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "微软雅黑", Tahoma, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#editor {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 92%;
+  font-size: 12px;
+}
+
+.footBtn {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  display: -webkit-flex;
+  bottom: 0;
+  width: 100%;
+  height: 8%;
+  background: rgb(70, 70, 70);
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  z-index: 100;
+}
+
+.footBtn span {
+  flex: 1;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.footBtn span:nth-child(1) {
+  border-right: 1px solid #fff;
+}
+
+.footBtn span:nth-child(2) {
+  border-left: 1px solid #fff;
+}
+
+.desWrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: -100%;
+  background: rgb(255, 255, 255);
+  z-index: 90;
+}
+
+.desList {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  list-style: none;
+  overflow: auto;
+}
