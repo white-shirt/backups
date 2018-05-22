@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+    <title>微信扫码登录</title>
+<script th:src="@{js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{blockly/PCblockly_compressed.js?version=20180427}"></script>
+    <script th:src="@{blockly/javascript_compressed.js}"></script>
+    <script th:src="@{blockly/zh-hans.js}"></script>
+    <script th:src="@{js/blocks.js?version=20180504}"></script>
+    <script th:src="@{js/javascript.js?version=20180504}"></script>
+    <link rel="stylesheet" th:href="@{css/PCindex.css?version=20180504}"/>
+</head>
+
+<body>
+<div  id="ma">
+</div>
+<script type="text/javascript">
+    $(function(){
+        $.post("http://www.eggtoy.com/eggtoy/indexTest/weixin",function(data){
+            var ma = data.shorturl;
+            var srcMa = "http://qr.topscan.com/api.php?text="+ma;
+            alert(srcMa);
+            var imgg = "<img src="+srcMa+"/>";
+            //将生成的二维码放到div里
+            $("#ma").empty().append(imgg);
+        });
+        //置初始值
+        $.post("http://www.eggtoy.com/eggtoy/indexTest/type",{"a":0},function(){});
+        panduan();
+    })
+    //微信扫码是否成功的判断
+    var test = 0;
+    function panduan(){
+        $.post("http://www.eggtoy.com/eggtoy/indexTest/successDL",function(data){
+
+            if(data.type==1){
+
+                window.location.href='http://www.eggtoy.com/eggtoy/indexTest/fangSession';
+            }else if(data.type==0 ){
+            	if(test!=300){
+                //没扫码成功，将test+1,达到三百次（150秒），就不扫了。
+                test = test+1;
+                panduan();
+            	}
+            }else if(test==300){
+                alert("登录码已失效，请刷新页面更新验证码！");
+                $.post("http://www.eggtoy.com/eggtoy/indexTest/type",{"a":5},function(){});
+            }
+        });
+    }
+</script>
+</body>
+</html>
