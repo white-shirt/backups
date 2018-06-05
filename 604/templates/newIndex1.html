@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>登录成功</title>
+    <script th:src="@{js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{blockly/PCblockly_compressed.js?version=20180427}"></script>
+    <script th:src="@{blockly/javascript_compressed.js}"></script>
+    <script th:src="@{blockly/zh-hans.js}"></script>
+    <script th:src="@{js/blocks.js?version=20180504}"></script>
+    <script th:src="@{js/javascript.js?version=20180504}"></script>
+    <link rel="stylesheet" th:href="@{css/PCindex.css?version=20180504}"/>
+</head>
+
+<body>
+   <div>登录成功！</div>
+<div>用户昵称：	<input type="text" id="nickname" th:value='${info.nickname}' /> </div>
+<div>用户头像：<img id ="headimgurl" style="vertical-align:top;" width = "100" alt="" name ="headimgurl" th:src="${info.headimgurl}"></img></div>
+</body>
+
+</html>

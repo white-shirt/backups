@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8" />
+<title>已绑蛋仔</title>
+<meta name="wap-font-scale" content="no" />
+<meta name="viewport"
+	content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/equipment.css}" />
+<script type="text/javascript" th:src="@{/js/jquery-1.10.1.min.js}"></script>
+<script th:inline="javascript" th:src="@{/js/equipment.js}"></script>
+<style>
+/* @charset "utf-8"; */
+</style>
+</head>
+
+<body>
+	<input type="hidden" id="DeviceId" th:value='${DeviceId}' />
+	<input type="hidden" id="view" th:value='${view}' />
+	<div class="wrap">
+		<div class="eqNum">
+			<span></span>
+		</div>
+		<ul class="ul">
+			<!-- 被clone元素 -->
+			<li class="list hide">
+				<div class="show">
+					<span class="liImg"></span>
+					<p class="title">
+						蛋仔<span></span>
+					</p>
+					<span class="online"></span>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

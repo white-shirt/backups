@@ -1,0 +1,7 @@
+node_modules/*
+static/*
+build/*
+intl/*
+locales/*
+**/*.min.js
+**/node_modules/*

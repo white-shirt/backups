@@ -1,0 +1,42 @@
+{
+    "ab": {
+        "locale": "ab",
+        "parentLocale": "az"
+    },
+    "an": {
+        "locale": "an",
+        "parentLocale": "ca"
+    },
+    "cat": {
+        "locale": "cat",
+        "parentLocale": "en"
+    },
+    "ht": {
+        "locale": "ht",
+        "parentLocale": "fr"
+    },
+    "ja-hr": {
+        "locale": "ja-hr",
+        "parentLocale": "ja"
+    },
+    "la": {
+        "locale": "la",
+        "parentLocale": "it"
+    },
+    "sc": {
+        "locale": "sc",
+        "parentLocale": "it"
+    },
+    "yum": {
+        "locale": "yum",
+        "parentLocale": "en"
+    },
+    "zh-cn": {
+        "locale": "zh-cn",
+        "parentLocale": "zh"
+    },
+    "zh-tw": {
+        "locale": "zh-tw",
+        "parentLocale": "zh"
+    }
+}

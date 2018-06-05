@@ -1,0 +1,202 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	font-family:  "微软雅黑", Tahoma, Helvetica, Arial, sans-serif;
+}
+html{
+    width: 100%;
+    font-size: calc(100vw/6.4);
+    /*1rem=100px*/
+	font-size: -webkit-calc(100vw/6.4);
+	font-size: -moz-calc(100vw/6.4);
+	-webkit-text-size-adjust: 100%;
+	/*页面点击链接时会出现高亮框，此代码用来解决*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	/*在谷歌里面，小于12号字都会直接显示为12号字，此代码解除此问题*/
+    -webkit-text-size-adjust: none;
+}
+
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.banner{
+	width: 100%;
+}
+.banner img{
+	display: block;
+	width: 100%;
+}
+
+.show{
+	width: 100%;
+	height: 0.7rem;
+	line-height: 0.7rem;
+	border-bottom: 1px solid #dbdbdb;
+	font-size: 0.32rem;
+	padding: 0 0.8rem;
+	padding-right: 0.4rem;
+}
+
+.show>span{
+	float: right;
+	font-size: 0.3rem;
+	color: #555;
+}
+
+.show1{
+	background: url(../img/des1.png) no-repeat scroll 0.24rem 0.18rem;
+	background-size: 0.34rem 0.34rem;
+}
+.show2{
+	background: url(../img/des3.png) no-repeat scroll 0.24rem 0.18rem;
+	background-size: 0.34rem 0.34rem;
+}
+.show3{
+	background: url(../img/des2.png) no-repeat scroll 0.24rem 0.18rem;
+	background-size: 0.34rem 0.34rem;
+}
+.show4{
+	background: url(../img/des5.png) no-repeat scroll 0.24rem 0.18rem;
+	background-size: 0.34rem 0.34rem;
+}
+.show5{
+	background: url(../img/des4.png) no-repeat scroll 0.24rem 0.18rem;
+	background-size: 0.34rem 0.34rem;
+}
+.show6{
+	background: url(../img/des6.png) no-repeat scroll 0.24rem 0.18rem;
+	background-size: 0.34rem 0.34rem;
+}
+.rotate0{
+	transform: rotate(0deg);
+	transition: 0.4s;
+}
+
+.rotate1{
+	transform: rotate(-90deg);
+	transition: 0.4s;
+}
+
+.title{
+	height: 0.6rem;
+	
+}
+.title1{
+	padding: 0 0.4rem;
+	color: #3c6b90;
+}
+.title >img{
+	float: left;
+	display: block;
+	margin-left: 0.5rem;
+	margin-right: 0.1rem;
+	width: 0.22rem;
+	height: 0.22rem;
+	margin-top: 0.19rem;
+}
+.title p{
+	float: left;
+	font-size: 0.26rem;
+	line-height: 0.6rem;
+}
+
+.hide >img{
+	width: 90%;
+	margin: 0.3rem 5%;
+}
+
+.hide{
+	display: none;
+}
+
+.net{
+	width: 100%;
+	margin: 0.3rem 0;
+}
+.net img{
+	width: 50%;
+	float: left;
+}
+.net p{
+	float: left;
+	width: 50%;
+	font-size: 0.26rem;
+	padding: 0 0.3rem;
+	margin-top: 0.8rem;
+}
+.net span{
+	color: #ee7900;
+}
+
+.clearfix{
+	content: '';
+	clear: both;
+	display: block;
+	overflow: hidden;
+}
+.titleClick{
+	padding: 0 0.8rem;
+}
+.titleClick>span{
+	display: block;
+	line-height: 0.6rem;
+	float: right;
+	font-size: 0.3rem;
+}
+.titleClickShow{
+	display: none;
+}
+.titleClickShow img{
+	width: 90%;
+	margin: 0 5%;
+}
+.titleClickShow p{
+	font-size: 0.24rem;
+	padding: 0 0.5rem;
+	margin: 0.2rem 0;
+}
+.titleClickShow p span{
+	color: #ee7900;
+}
+
+.content{
+	width: 88%;
+	display: flex;
+	justify-content: space-between;
+	margin: auto;
+	margin-top: 0.5rem;
+	margin-bottom: 0.2rem;
+}
+.content img{
+	width: 3.4rem;
+	height: 5.9rem;
+	display: block;
+}
+.content p{
+	width: 1.8rem;
+	font-size: 0.26rem;
+	line-height: 1.6;
+	margin-top: 2rem;
+}
+.content span{
+	color: #ee7900;
+}
+.hide6 img{
+	margin: 0.2rem auto;
+}
+.hide6 img:nth-child(3){
+	margin: 0 auto;
+	margin-left: 7%;
+}
+.hide6 img:nth-child(4){
+	width: 70%;
+	margin-left: 15%;
+	margin-top: 0.5rem;
+	margin-bottom: 0.3rem;
+}

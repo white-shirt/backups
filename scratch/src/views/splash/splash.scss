@@ -1,0 +1,153 @@
+@import "../../colors";
+@import "../../frameless";
+
+#view {
+    padding: 0;
+}
+
+.inner.mod-splash {
+    margin-top: 20px;
+}
+
+.splash {
+    .splash-header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        .ie9 & {
+            display: table;
+            margin: 0 -20px 20px -20px;
+            min-width: 100%;
+            border-spacing: 20px 0;
+        }
+
+        .box {
+            display: inline-block;
+            width: calc(60% - 20px);
+
+            .ie9 & {
+                display: table-cell;
+                vertical-align: top;
+            }
+        }
+
+        .news {
+            width: 40%;
+
+            img {
+                flex-shrink: 0;
+            }
+        }
+    }
+
+    .box {
+        margin-bottom: 20px;
+    }
+}
+
+.modal-content.mod-confirmation {
+    width: 31.25rem;
+}
+
+.modal-content-iframe.mod-confirmation {
+    border-radius: 1rem;
+    width: 31.25rem;
+    min-height: 20.625rem;
+}
+
+.activity-ul {
+    margin: 0;
+    padding: 0;
+}
+
+.activity-li {
+    display: flex;
+    margin: .75rem 0;
+    list-style: none;
+    align-items: center;
+}
+
+.flex-row.mod-social-message {
+    line-height: 1.25rem;
+    flex-direction: column;
+}
+
+.social-message {
+    border: 0;
+    padding: 0;
+}
+
+.activity-img {
+    padding-right: .825rem;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: middle;
+}
+
+.social-message-content {
+    font-size: .9rem;
+}
+
+.social-message-date {
+    color: $ui-dark-gray;
+    font-size: .65rem;
+}
+
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    .splash {
+        .splash-header {
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .box {
+                width: $cols4;
+            }
+        }
+    }
+
+    .modal-content.mod-confirmation {
+        width: 100%;
+        overflow: scroll;
+    }
+
+    .modal-content-iframe.mod-confirmation {
+        border-radius: 0;
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .splash {
+        .splash-header {
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .box {
+                width: $cols6;
+            }
+        }
+    }
+
+    .modal-content.mod-confirmation {
+        width: 100%;
+        overflow: scroll;
+    }
+
+    .modal-content-iframe.mod-confirmation {
+        border-radius: 0;
+        width: $tablet - 1;
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .splash {
+        .splash-header {
+            margin: 0 auto;
+            width: $cols8;
+        }
+    }
+}

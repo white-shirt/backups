@@ -1,0 +1,6 @@
+{
+    "devDependencies": {
+        "selenium-webdriver": "3.6.0",
+        "chromedriver": "2.37.0"
+    }
+}

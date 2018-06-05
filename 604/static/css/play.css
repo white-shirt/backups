@@ -1,0 +1,349 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+html{
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+    font-family:  "微软雅黑", Tahoma, Helvetica, Arial, sans-serif;
+    font-size: calc(100vw/6.4);
+    /*1rem=100px*/
+	font-size: -webkit-calc(100vw/6.4);
+	font-size: -moz-calc(100vw/6.4);
+	-webkit-text-size-adjust: 100%;
+	/*页面点击链接时会出现高亮框，此代码用来解决*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	/*在谷歌里面，小于12号字都会直接显示为12号字，此代码解除此问题*/
+    -webkit-text-size-adjust: none;
+}
+
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.wrap {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+.mask {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(31, 31, 31, 0.5);
+	z-index: 2;
+	display: none;
+}
+
+#bg {
+	position: absolute;
+}
+
+.wrap {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.musicName {
+	position: absolute;
+	top: 0.5rem;
+	width: 100%;
+	color: #fff;
+	font-weight: normal;
+	text-align: center;
+	font-size: 0.36rem;
+}
+
+.controlList{
+	width: 70%;
+	position: absolute;
+	bottom: 3rem;
+	left: 15%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.controlList li:nth-child(1){
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 50%;
+	margin-top: 0.15rem;
+}
+
+.controlList li:nth-child(2){
+	width: 1rem;
+	height: 1rem;
+}
+
+.controlList li:nth-child(3){
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 50%;
+	margin-top: 0.15rem;
+}
+
+.last {
+	background: url('../img/playcontrol1.png') no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+}
+
+.start {
+	background: url('../img/playstart.png') no-repeat;
+	background-size: cover;
+	background-position: -1rem 0;
+}
+
+.next {
+	background: url('../img/playcontrol1.png') no-repeat;
+	background-size: cover;
+	background-position: -0.8rem 0;
+}
+
+.voiceBox {
+	position: absolute;
+	left: 5%;
+	bottom: 2rem;
+	width: 90%;
+	height: 50px;
+}
+
+.voiceBox1 {
+	transform: rotate(180deg);
+	display: flex;
+	display: -webkit-flex;
+	bottom: 2.2rem;
+}
+
+.voiceBox ul {
+	flex: auto;
+	-webkit-flex: auto;
+	list-style-type: none;
+	height: auto;	
+}
+
+.voiceBox ul li {
+	height: 3px;
+	margin-top: 2px;
+	background: rgb(137, 243, 245);
+	box-shadow: 0px 1px 10px rgb(75, 236, 241);
+	-webkit-box-shadow: 0px 1px 10px rgba(133, 253, 255, 0.5);
+}
+
+.operation{
+	width: 100%;
+	height: 0.5rem;
+	position: absolute;
+	bottom: 1rem;
+	left: 0;
+	padding: 0 7%;
+}
+
+.cate{
+	float: left;
+	height: 0.5rem;
+	width: 0.91rem;
+	margin-top: 0.02rem;
+	border-radius: 0.05rem;
+	background: url('../img/playcate.png') no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+}
+
+.cate img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.opBox{
+	height: 0.5rem;
+	float: left;
+}
+
+.opBox li{
+	float: left;
+	margin-left: 0.75rem;
+	margin-top: 0.1rem;
+	width: 0.46rem;
+	height: 0.35rem;
+}
+
+.mode{
+	background: url(../img/playloop.png) no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+}
+
+.list{
+	background: url(../img/list.png) no-repeat scroll top left;
+	background-size: 100% 100%;
+}
+
+.btnBox{
+	display: block;
+	float: left;
+	width: 1.18rem;
+	height: 0.42rem;
+	background-image: url(../img/slideBox.png);
+	background-size: 100% 100%;
+	position: relative;
+	margin-top: 0.04rem;
+	margin-left: 0.5rem;
+}
+
+.slideBtn{
+	position: absolute;
+	width: 0.55rem;
+	height: 0.34rem;
+	top: 0.04rem;
+	left: 0.57rem;
+	background: url(../img/playslide.png) no-repeat;
+	background-size: cover;
+	background-position: -0.55rem 0;
+}
+
+.opMusicImg{
+	display: block;
+	width: 0.5rem;
+	float: left;
+	margin-top: 0.15rem;
+	margin-left: 0.1rem;
+}
+
+.opStoryImg {
+	display: none;
+	width: 2rem;
+	float: left;
+	margin-top: 0.15rem;
+	margin-left: 0.3rem;
+}
+
+.musicList{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	left: 0;
+	bottom: -100%;
+	background: #517e9e;
+	color: #fff;
+        overflow: hidden;
+}
+
+.musicList >p{
+	width: 100%;
+	font-size: 0.3rem;
+	line-height: 0.8rem;
+	border-bottom: 3px double #fff;
+	padding: 0 0.2rem;
+	box-sizing: border-box;
+        overflow: hidden;
+}
+
+.musicList ul{
+	overflow-y: auto;
+	height: 4.3rem;
+}
+
+.musicList ul li{
+	padding: 0 0.2rem;
+	font-size: 0.3rem;
+	line-height: 0.8rem;
+}
+
+.volumeIcon{
+	width: 100%;
+	height: 0.8rem;
+	background: #86b1ce;
+	padding: 0 0.7rem;
+}
+
+.volumeIcon img{
+	display: block;
+	float: left;
+	width: 0.4rem;
+	height: 0.4rem;
+	margin-top: 0.2rem;
+	margin-right: 0.3rem;
+}
+
+.volumeBar1 {
+	width: 4.2rem;
+	float: left;
+	height: 0.06rem;
+	background: #fff;
+	margin-top: 0.37rem;
+	position: relative;
+	border-radius: 4px;
+}
+
+.leftBtn1 {
+	position: absolute;
+	display: block;
+	width: 0.22rem;
+	height: 0.22rem;
+	border-radius: 50%;
+	left: 130px;
+	top: -0.08rem;
+	background: #2e4d66;
+}
+
+.leftVolBar1 {
+	width: 130px;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	background: #2e4d66;
+	border-radius: 4px 0 0 4px;
+}
+
+.voiceBox {
+	position: absolute;
+	left: 5%;
+	bottom: 2rem;
+	width: 90%;
+	height: 50px;
+}
+
+.voiceBox1 {
+	transform: rotate(180deg);
+	display: flex;
+	display: -webkit-flex;
+	bottom: 2rem;
+}
+
+.voiceBox ul {
+	flex: auto;
+	-webkit-flex: auto;
+	list-style-type: none;
+	height: auto;	
+}
+
+.voiceBox1 ul li {
+	height: 3px;
+	margin-top: 2px;
+	background: rgb(137, 243, 245);
+	box-shadow: 0px 1px 10px rgb(75, 236, 241);
+	-webkit-box-shadow: 0px 1px 10px rgba(133, 253, 255, 0.5);
+  }
+
+
+
+
+
