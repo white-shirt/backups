@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>QQ音乐H5音频播放器Demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<style>
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{padding:1em;line-height:1.6;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;background:#eee}
+body,h1,h2,h3,h4,h5,p,ul,ol,dl,dd,fieldset,textarea{margin:0}
+fieldset,legend,textarea,input,button{padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;*font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+ul,ol{padding-left:0;list-style-type:none}
+a img,fieldset{border:0}
+a{text-decoration:none}
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;line-height:1.6}
+a{color:#607fa6;text-decoration:none}
+body,html{padding:0;height:100%;width:100%;-webkit-appearance:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}
+h2{padding:1em}
+.action-list{overflow-x: scroll}
+.btn{display:inline-block;margin:.3em;border:1px solid #10c7d3;background:#00b7c3;padding:.5em 1em;color:#fff;text-decoration:none;line-height: 1em;}
+.js_tips{height: 2em;text-indent: .5em;margin:.5em;border-left: 5px solid #aaa;background: #ddd;line-height: 2em;}
+</style>
+</head>
+<body>
+<h2>QQ音乐H5音频播放器Demo</h2>
+<div>
+    播放方式：
+    <input type="radio" name="target" value="auto" id="target_auto" checked>
+    <label for="target_auto">自动</label> |
+    <input type="radio" name="target" value="music" id="target_music">
+    <label for="target_music">QQ音乐</label> |
+    <input type="radio" name="target" value="web" id="target_web">
+    <label for="target_web">网页</label>
+</div>
+<div class="action-list">
+    <button class="btn js_demo1">歌曲id</button>
+    <button class="btn js_demo2">歌曲mid</button>
+    <button class="btn js_demo3">列表</button>
+    <button class="btn js_demo4">无效id</button>
+    <button class="btn js_demo5">歌曲链接</button>
+    <button class="btn js_demo6">循环播放</button>
+    <button class="btn js_showdata">歌曲数据</button>
+</div>
+<hr>
+<div class="action-list">
+    <button class="btn js_play">播放</button>
+    <button class="btn js_pause">暂停</button>
+    <button class="btn js_prev">上一个</button>
+    <button class="btn js_next">下一个</button>
+    <br>
+    <span>只有web播放有效</span>
+    <br>
+    <button class="btn js_setSeek1">后退5秒</button>
+    <button class="btn js_setSeek2">前进5秒</button>
+    <button class="btn js_reload">刷新页面</button>
+</div>
+<hr>
+<div class="js_result"></div>
+
+<script src="//y.gtimg.cn/music/h5/player/player.js"></script>
+<script>
+var utils = {
+    touch: "ontouchend" in document ? true : false,
+    ontap: function (elem, callback) {
+        if (typeof elem == "string") {
+            elem = document.querySelector(elem);
+        }
+        if (elem) {
+            if (utils.touch) {
+                var x1 = null, y1 = null, x2 = null, y2 = null;
+                elem.addEventListener("touchstart", function (e) {
+                    if (e.touches.length == 1) {
+                        x1 = x2 = e.touches[0].pageX;
+                        y1 = y2 = e.touches[0].pageY;
+                    }
+                });
+                elem.addEventListener("touchmove", function (e) {
+                    if (x1 != null) {
+                        x2 = e.touches[0].pageX;
+                        y2 = e.touches[0].pageY;
+                    }
+                });
+                elem.addEventListener("touchend", function () {
+                    if (Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) < 400) {
+                        callback.call(elem);
+                    }
+                    x1 = null;
+                });
+            } else {
+                elem.addEventListener("click", callback);
+            }
+        }
+        return this;
+    }
+}
+
+var params = {};
+
+var no = 0;
+var list = [];
+var result = document.querySelector(".js_result");
+"ended error pause play timeupdate waiting".split(" ").forEach(function (evt) {
+    params["on" + evt] = function (e) {
+        // console.log(evt, e);
+        list.unshift('<div>' + ++no + " " + evt + ":" + JSON.stringify({
+            index: e.index,
+            currentTime: e.currentTime,
+            duration: e.duration,
+            mid: e.song && e.song.mid,
+            message: e.message
+        }, 0, 4) + '</div>');
+        list.length = 100;
+        result.innerHTML = list.join("");
+    }
+})
+
+var player = new Player(params);
+
+var target = "auto";
+
+function changeTarget(e) {
+  target = this.value;
+}
+
+document.getElementById("target_auto").onchange = changeTarget;
+document.getElementById("target_music").onchange = changeTarget;
+document.getElementById("target_web").onchange = changeTarget;
+
+utils
+    .ontap(".js_reload", function (e) {
+        location.reload();
+    })
+    .ontap(".js_demo1", function (e) {
+        player.loop = false;
+        player.play("106350845", {target: target});
+    })
+    .ontap(".js_demo2", function (e) {
+        player.loop = false;
+        player.play("002R32LQ2u9c4z", {target: target});
+    })
+    .ontap(".js_demo3", function (e) {
+        player.loop = false;
+        player.play([
+            106350845, // 免费歌曲
+            106350846, // 免费歌曲
+            106350847, // 免费歌曲
+            106350848, // 免费歌曲
+            106350849, // 免费歌曲
+            106350850, // 免费歌曲
+            204174153, // 已购买数字专辑
+            204459077, // 未购买数字专辑
+            58, // 下架歌曲
+            4334444 // 版权原因下架歌曲
+        ], {index: 2, target: target});
+    })
+    .ontap(".js_demo4", function (e) {
+        player.loop = false;
+        player.play([
+            106350845, // 免费歌曲
+            204174153, // 已购买数字专辑
+            204459077, // 未购买数字专辑
+            58, // 下架歌曲
+            4334444 // 版权原因下架歌曲
+        ], {index: 1, target: target});
+    })
+    .ontap(".js_demo5", function (e) {
+        player.loop = false;
+        player.play("http://ws.stream.qqmusic.qq.com/lm005d9e8facb91a60f36de44b85ec7a6893.mp3", {target: target});
+    })
+    .ontap(".js_demo6", function (e) {
+        player.loop = true;
+        player.play([
+            106350845, // 免费歌曲
+            106350846, // 免费歌曲
+            106350847, // 免费歌曲
+            106350848, // 免费歌曲
+            106350849, // 免费歌曲
+            106350850, // 免费歌曲
+            204174153, // 已购买数字专辑
+            204459077, // 未购买数字专辑
+            58, // 下架歌曲
+            4334444 // 版权原因下架歌曲
+        ], {index: 2, target: target});
+    })
+    .ontap(".js_prev", function (e) {
+        player.playPrev();
+    })
+    .ontap(".js_play", function (e) {
+        player.play();
+    })
+    .ontap(".js_next", function (e) {
+        player.playNext();
+        console.log(player.data)
+    })
+    .ontap(".js_pause", function (e) {
+        player.pause();
+    })
+    .ontap(".js_setSeek1", function (e) { // 后退5秒
+        player.currentTime = player.currentTime - 5;
+    })
+    .ontap(".js_setSeek2", function (e) { // 前进5秒
+        player.currentTime = player.currentTime + 5;
+    })
+    .ontap(".js_showdata", function (e) { // 前进5秒
+        console.log(JSON.stringify(player.data,0,4))
+    })
+    
+// player.play([
+//     106350845, // 免费歌曲
+//     204174153, // 已购买数字专辑
+//     204459077, // 未购买数字专辑
+//     58, // 下架歌曲
+//     4334444 // 版权原因下架歌曲
+// ], {index: 1})
+
+// player.play([
+//     106350845, // 免费歌曲
+//     106350846, // 免费歌曲
+//     106350847, // 免费歌曲
+//     106350848, // 免费歌曲
+//     106350849, // 免费歌曲
+//     106350850, // 免费歌曲
+//     204174153, // 已购买数字专辑
+//     204459077, // 未购买数字专辑
+//     58, // 下架歌曲
+//     4334444 // 版权原因下架歌曲
+// ], {index: 2})
+
+</script>
+
+<script>
+// var ChannelInfo = {
+//     "cateid": 2,
+//     "channelid": "50",
+//     "playid": "100104000",
+//     "keyword": "",
+//     "channelname": "广西卫视",
+//     "currentid": "",
+//     "currentname": "",
+//     "currenttime": "",
+//     "commentid": ""
+// };
+// var video = new tvp.VideoInfo();
+// video.setChannelId(ChannelInfo.playid);
+// video.setChannelExtParam({
+//     channelid: ChannelInfo.channelid,
+//     channelname: ChannelInfo.channelname
+// });
+
+// var player = new tvp.Player();
+// player.create({
+//     width: 360,
+//     height: 203,
+//     video: video,
+//     modId: "mod_player",
+//     autoplay: true,
+//     playerType: 'html5',
+//     flashWmode: 'direct',
+//     type: 1,
+//     onwrite: function() {
+//         console.log("onwrite")
+//     },
+//     onerror: function() {
+//         console.log("onerror")
+//     }
+// });
+</script>
+</body>
+</html>

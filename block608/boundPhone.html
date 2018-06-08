@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>手机号绑定设备</title>
+	<link rel="stylesheet" type="text/css" href="css/boundPhone.css" />
+</head>
+
+<body>
+	<input type="hidden" name="unionid" id="unionid" th:value="${unionid}"/>
+	<input type="hidden" name="nickname" id="nickname" th:value="${userInfo.nickname}"/>
+	<input type="hidden" name="headimgurl" id="headimgurl" th:value="${userInfo.headimgurl}"/>
+	<div class="htmleaf-container">
+		<div id="wrapper" class="login-page">
+			<div id="login_form" class="form">
+					<input type="text" placeholder="手机号" id="user_name" />
+					<input type="password" placeholder="输入密码(6-10位字母和数字)" id="password" />
+					<input type="password" placeholder="确认密码" id="confirmPwd" />
+					<button id="login">注 册 并 绑 定</button>
+					<span class="error"></span>
+			</div>
+		</div>
+		
+	</div>
+	<canvas id="background"></canvas>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/boundPhone.js"></script>
+	<script src="js/pointLine.js"></script>
+</body>
+</html>

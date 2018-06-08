@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="css/code.css" />
+  <title>代码编程</title>
+</head>
+
+<body>
+  <!-- <input type="hidden" id="DeviceId" th:value="${WeChatProperty.deviceId}" /> -->
+  <div class="wrap">
+    <div id="editor"></div>
+    <div class="footBtn">
+      <span class="description">代码说明</span>
+      <span class="start">运行</span>
+    </div>
+    <div class="desBoxmask"></div>
+    <div class="desWrap"></div>
+    <div class="boxWrap">
+      <span class="boxTitle"></span>
+      <span class="boxCode"></span>
+      <span class="boxCodeDes"></span>
+      <span class="closeBtn">好了,我知道了</span>
+    </div>
+  </div>
+  <script>
+    var footBtnH = $('.footBtn').height();
+    $('.footBtn span').css({ 'lineHeight': footBtnH + 'px' });
+  </script>
+  <script src="js/setTime.js"></script>
+  <script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="ace/theme-textmate.js" type="text/javascript" charset="utf-8"></script>
+  <script src="ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/construction.js"></script>
+  <script src="js/code.js"></script>
+</body>
+
+</html>

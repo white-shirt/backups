@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <title>设备授权</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      font-family: "Microsoft Yahei", Tahoma, Helvetica, Arial, sans-serif;
+    }
+
+    input {
+      display: inline-block;
+      box-sizing: border-box;
+      text-align: center;
+      height: 25px;
+      border-radius: 4px;
+      border: 2px solid #c8cccf;
+      color:#000000;
+      background: #fff;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      outline: 0;
+      padding: 0 5px;
+      text-decoration: none;
+    }
+  
+    li {
+      list-style: none;
+    }
+
+    .ul {
+      display: block;
+      width: 80%;
+      height: auto;
+      margin: 10% auto 5%;
+    }
+
+    .list {
+      display: flex;
+      display: -webkit-flex;
+      margin: 30px 0; 
+    }
+
+    .flexList {
+      flex: 1;
+      flex-direction: row;
+      text-align: center;
+      font-size: 14px;
+      line-height: 25px;
+    }
+
+    .delete {
+      cursor: pointer;
+    }
+
+    .btnGroup {
+      width: 27%;
+      height: 25px;
+      margin: 0 auto 20px;
+      font-size: 13px;
+      text-align: center;
+      line-height: 25px;
+      cursor: pointer;
+      background: yellowgreen;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <ul class="ul">
+    <li class="list">
+      <span class="flexList beforeSix">18FE34</span>
+      <input class="flexList macInput" type="text" placeholder="mac地址后6位" />
+      <span class="flexList delete">删除</span>
+    </li>
+  </ul>
+  <div class="btnGroup authority">开始授权1台设备</div>
+  <div class="btnGroup add">添加新MAC</div>
+  <div class="btnGroup clearList">清空MAC列表</div>
+  <script type="text/javascript">
+    var ul = $('.ul');
+    var add = $('.add');
+    var authority = $('.authority');
+    var clearList = $('.clearList');
+    var macReg = /^[0-9A-F]{6}$/;
+    $('body').on('click', '.delete', function () {
+      var deleteflag = confirm('确定删除此项');
+      if (deleteflag) $(this).parent().remove();
+    });
+    add.click(function () {
+      var newlist = $('<li class="list"></li>');
+      var newbeforeSix = $('<span class="flexList beforeSix">18FE34</span>');
+      var newmacInput = $('<input type="text" class="flexList macInput" placeholder="mac地址后6位" />');
+      var newdelete = $('<span class="flexList delete">删除</span>');
+      newlist.append(newbeforeSix, newmacInput, newdelete);
+      ul.append(newlist);
+    });
+    clearList.click(function () {
+      var flag = confirm('确定清空列表');
+      if (flag) ul.empty();
+    });
+    authority.click(function () {
+      sendMac();
+    });
+    function sendMac() {
+      var t;
+      if (macReg.exec($('.macInput').eq(0).val())) {
+        function send() {
+          $.ajax({
+            url: 'http://eggtoy.51118518.com/indexTest/authorization',
+            type: 'POST',
+            data: {
+              'mac': '18FE34' + $('.macInput').eq(0).val()
+            },
+            success: function (data) {
+              if (data) {
+                $('.list').eq(0).remove();
+                send();
+                console.log('成功啦');
+              }
+            },
+            error: function () {
+              alert('网络出了点问题');
+            }
+          })
+        }
+        send();
+      }
+    };
+    $('body').on('click', '.delete, .add, .clearList', function () {
+      authority.html('开始授权' + $('.list').length + '台设备');
+    });
+    $('body').on('blur', '.macInput', function () {
+      if (macReg.exec($(this).val())) {
+        $(this).css({ 'borderColor': '#c8cccf' });
+      } else {
+        $(this).css({ 'borderColor': 'red' });
+      }
+    });
+  </script>
+</body>
+</html>
