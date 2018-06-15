@@ -1,0 +1,67 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+html{
+    width: 100%;
+    font-size: calc(100vw/6.4);
+    /*1rem=100px*/
+	font-size: -webkit-calc(100vw/6.4);
+	font-size: -moz-calc(100vw/6.4);
+	-webkit-text-size-adjust: 100%;
+	/*页面点击链接时会出现高亮框，此代码用来解决*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	/*在谷歌里面，小于12号字都会直接显示为12号字，此代码解除此问题*/
+    -webkit-text-size-adjust: none;
+}
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+body{
+	background: #ebebeb;
+}
+.bg{
+	width: 100%;
+	display: block;
+}
+.wrap{
+	width: 100%;
+	margin: auto;
+	padding: 0 5%;
+	background: #ffffff;
+}
+.wrap div{
+	width: 100%;
+	border-bottom: 1px solid #ebebeb;
+}
+.question{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	font-size: 0.32rem;
+}
+.question span{
+	float: right;
+	font-size: 0.4rem;
+}
+.answer{
+	font-size: 0.28rem;
+	margin-bottom: 0.25rem;
+	display: none;
+	line-height: 1.6;
+	padding-right: 0.2rem;
+}
+.answer span{
+	color: #ee7900;
+}
+.rotate90{
+	transform: rotate(-90deg);
+}
+/*.answer:last-child{
+	padding: 0.1rem 0 0.2rem;
+}*/
